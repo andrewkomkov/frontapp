@@ -1,16 +1,11 @@
 import {Metadata} from 'next'
-import {Poppins} from 'next/font/google'
 import {ColorModeProvider} from '~/components/providers/ColorModeContext'
 import {MagicScriptTag} from '~/components/theme/InlineCssVariables'
 import {Providers} from './providers'
 import '../styles/index.css'
 
-const poppins = Poppins({
-  variable: '--font-poppins',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal'],
-})
+// Use system fonts instead of Google Fonts to avoid network issues during build
+const fontFamily = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
 
 const APP_NAME = 'X-Cart Auto app'
 const APP_DEFAULT_TITLE = 'X-Cart Auto front app'
@@ -59,7 +54,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={poppins.variable} suppressHydrationWarning>
+    <html lang="en" style={{fontFamily}} suppressHydrationWarning>
       <body className="bg-contrast leading-base text-primary antialiased">
         <MagicScriptTag />
         <ColorModeProvider>
